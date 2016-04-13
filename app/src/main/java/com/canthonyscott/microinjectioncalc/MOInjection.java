@@ -213,7 +213,7 @@ public class MOInjection extends AppCompatActivity{
                 injectionQuantity = Double.parseDouble(new DecimalFormat("#####.##").format(injectionQuantity));
                 injectionQuantityResult.setText(injectionQuantity.toString());
 
-                LogHistory logHistory = new LogHistory(getApplicationContext(), "MicroInjection", dilution1.getText().toString(), dilution2.getText().toString(), numberOfMillimeters.getText().toString(),selectedMO.getGene(),numberOfPumps.getText().toString(),injectionQuantity.toString());
+                LogHistory logHistory = new LogHistory(getApplicationContext(), "injection", dilution1.getText().toString(), dilution2.getText().toString(), numberOfMillimeters.getText().toString(),selectedMO.getGene(),numberOfPumps.getText().toString(),injectionQuantity.toString());
                 logHistory.execute();
 
             }

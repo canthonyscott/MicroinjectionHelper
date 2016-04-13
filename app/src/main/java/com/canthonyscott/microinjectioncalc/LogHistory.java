@@ -87,6 +87,19 @@ public class LogHistory extends AsyncTask <Void, Void, Void> {
         paramData.put("concentration", concentration);
     }
 
+    public LogHistory(Context context, String type, String concentration, String mm, String pumps, String nanoliters, String picograms, String dilution1, String dilution2){
+        String uniqueID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        paramData.put("historyType", "injection");
+        paramData.put("uniqueID", uniqueID);
+        paramData.put("type", type);
+        paramData.put("mm", mm);
+        paramData.put("pumps", pumps);
+        paramData.put("nanoliters", nanoliters);
+        paramData.put("picograms", picograms);
+        paramData.put("concentration", concentration);
+
+    }
+
 
 
 
