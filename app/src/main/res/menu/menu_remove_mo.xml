@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".RemoveMO">
+    <item
+        android:id="@+id/addMO"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Add MO" />
+    <item
+        android:id="@+id/shareMO"
+        app:showAsAction="never"
+        android:title="Share MO with group"
+        />
+    <item
+        android:id="@+id/deleteMO"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/delete_single_mo"/>
+
+    <item
+        android:id="@+id/showShared"
+        app:showAsAction="never"
+        android:title="My Shared Oligos"
+        />
+
+    <item
+        android:id="@+id/deleteALL"
+        app:showAsAction="never"
+        android:title="@string/reset_database"/>
+
+
+</menu>

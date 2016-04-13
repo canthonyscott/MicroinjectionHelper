@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="32dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_main"
+        android:gravity="center_horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Network Status:"
+        android:textColor="@color/grey"
+        android:id="@+id/networkStatus" />
+    <TextView
+        android:id="@+id/statusResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disabled (Change in Settings)"
+        android:textColor="@color/grey"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/networkStatus"
+        android:layout_toEndOf="@+id/networkStatus" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logged in as: "
+        android:textColor="@color/grey"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/networkStatus"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/loggedInAs"
+        android:text="disabled"
+        android:textColor="@color/grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/linearLayout2">
+
+        <LinearLayout
+            android:paddingRight="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Oligo Injection"
+                android:id="@+id/button_MO"
+                android:clickable="true"
+                android:onClick="openMOActivity" />
+
+            <Button
+                android:onClick="savedOligos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Saved Oligos"
+                android:layout_below="@+id/linearLayout"
+                android:layout_centerHorizontal="true" />
+            <!--<Button-->
+                <!--android:id="@+id/login"-->
+                <!--android:onClick="login"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Login"/>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RNA Injection"
+                android:id="@+id/button_RNA"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:onClick="openRNAActivity" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calculate Injection Mix"
+                android:id="@+id/calcMix"
+                android:onClick="calcRNAMix"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="version name"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="59dp"
+        android:id="@+id/versionNameMain" />
+
+
+</RelativeLayout>
+
+

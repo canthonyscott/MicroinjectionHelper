@@ -1,0 +1,30 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:title="Stock Oligo Molarity (mM) "
+        android:maxLines="1"
+        android:defaultValue="1"
+        android:key="oligoMolarity"
+        android:inputType="numberDecimal"
+        />
+
+    <SwitchPreference
+        android:title="Use Networking Database"
+        android:defaultValue="true"
+        android:key="useNetworkDatabase"
+        />
+
+    <EditTextPreference
+        android:title="Server Address"
+        android:maxLines="1"
+        android:defaultValue="canthonyscott.tk:1106"
+        android:key="serverAddressDomain"
+        android:inputType="text"
+        android:dependency="useNetworkDatabase"
+        />
+
+
+
+</PreferenceScreen>
