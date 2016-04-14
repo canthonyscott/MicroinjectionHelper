@@ -42,7 +42,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String url;
     private TextView statusResult;
     private SharedPreferences prefs;
     private TextView loggedInAs;
@@ -277,8 +276,6 @@ public class MainActivity extends AppCompatActivity {
             String paramString = sbParams.toString();
 
             try {
-//                urlObj = new URL(url);
-//                conn = (HttpsURLConnection) urlObj.openConnection();
                 conn = getNetworkResource.getSSLUrlConnection();
                 conn.setDoOutput(true);
                 conn.setDoInput(true);
