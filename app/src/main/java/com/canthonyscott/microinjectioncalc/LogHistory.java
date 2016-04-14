@@ -36,56 +36,17 @@ public class LogHistory extends AsyncTask <Void, Void, Void> {
     private String actionToLog;
     private GetNetworkResource getNetworkResource;
 
+    public LogHistory(Context context, String actionToLog) {
+        String uniqueID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        Log.d("LogHistory","uniqueID: " + uniqueID);
+        this.actionToLog = actionToLog;
+        getNetworkResource = new GetNetworkResource(context, "logHistory.php");
 
+        paramData.put("historyType", "event");
+        paramData.put("uniqueID", uniqueID);
+        paramData.put("action", actionToLog);
 
-
-
-    // constructor to send a simple action log to the database
-//    public LogHistory(Context context, String actionToLog) {
-//        String uniqueID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-//        Log.d("LogHistory","uniqueID: " + uniqueID);
-//        this.actionToLog = actionToLog;
-//        getNetworkResource = new GetNetworkResource(context, "logHistory.php");
-//
-//        paramData.put("historyType", "simple");
-//        paramData.put("uniqueID", uniqueID);
-//        paramData.put("action", actionToLog);
-//
-//    }
-
-//    // constructor that will send a log action, and send an oligo injection log
-//    public LogHistory(Context context, String actionToLog, String dilution1, String dilution2, String mm, String oligo, String pumps, String nanograms) {
-//        String uniqueID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-//        getNetworkResource = new GetNetworkResource(context, "logHistory.php");
-//        this.actionToLog = actionToLog;
-//        paramData.put("uniqueID", uniqueID);
-//        paramData.put("historyType", "complex");
-//        paramData.put("action", actionToLog);
-//        paramData.put("mm", mm);
-//        paramData.put("pumps", pumps);
-//
-//
-//        paramData.put("type", "oligo");
-//        paramData.put("dilution1", dilution1);
-//        paramData.put("dilution2", dilution2);
-//        paramData.put("oligo", oligo);
-//        paramData.put("nanograms", nanograms);
-//    }
-
-//    public LogHistory(Context context, String actionToLog, String concentration, String mm, String pumps, String nanoliters, String picograms) {
-//        String uniqueID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-//        getNetworkResource = new GetNetworkResource(context, "logHistory.php");
-//        this.actionToLog = actionToLog;
-//        paramData.put("uniqueID", uniqueID);
-//        paramData.put("historyType", "complex");
-//        paramData.put("action", actionToLog);
-//        paramData.put("mm", mm);
-//        paramData.put("pumps", pumps);
-//        paramData.put("nanoliters", nanoliters);
-//        paramData.put("picograms", picograms);
-//        paramData.put("type", "rna");
-//        paramData.put("concentration", concentration);
-//    }
+    }
 
     public LogHistory(Context context, String type, String reagent, String concentration, String mm, String pumps, String nanoliters, String picograms, String dilution1, String dilution2){
         getNetworkResource = new GetNetworkResource(context, "logHistory.php");
@@ -103,11 +64,6 @@ public class LogHistory extends AsyncTask <Void, Void, Void> {
         paramData.put("dilution2", dilution2);
 
     }
-
-
-
-
-
 
     @Override
     protected Void doInBackground(Void... params) {
