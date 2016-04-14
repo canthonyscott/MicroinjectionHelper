@@ -282,8 +282,8 @@ public class manageSharedOligos extends AppCompatActivity {
             if (s.equals("victory")){
                 moList.remove(selectedMO);
                 adapter.notifyDataSetChanged();
-                LogHistory logHistory = new LogHistory(getApplicationContext(), "DeletedSharedOligo");
-                logHistory.execute();
+//                LogHistory logHistory = new LogHistory(getApplicationContext(), "DeletedSharedOligo");
+//                logHistory.execute();
             }
             if (s.equals("failed")){
                 Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();

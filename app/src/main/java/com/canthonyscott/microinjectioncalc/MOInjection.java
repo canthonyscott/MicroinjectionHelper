@@ -162,6 +162,7 @@ public class MOInjection extends AppCompatActivity{
 
         //Set onClickListener for Calculate button
         Button calculate = (Button) findViewById(R.id.calculate);
+        assert calculate != null;
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,7 +214,7 @@ public class MOInjection extends AppCompatActivity{
                 injectionQuantity = Double.parseDouble(new DecimalFormat("#####.##").format(injectionQuantity));
                 injectionQuantityResult.setText(injectionQuantity.toString());
 
-                LogHistory logHistory = new LogHistory(getApplicationContext(), "injection", dilution1.getText().toString(), dilution2.getText().toString(), numberOfMillimeters.getText().toString(),selectedMO.getGene(),numberOfPumps.getText().toString(),injectionQuantity.toString());
+                LogHistory logHistory = new LogHistory(getApplicationContext(), "Oligo", selectedMO.getGene(), injectionConcentration.toString(), numberOfMillimeters.getText().toString(),numberOfPumps.getText().toString(),injectionVolume.toString(),injectionQuantity.toString(),dilution1.getText().toString(), dilution2.getText().toString());
                 logHistory.execute();
 
             }
