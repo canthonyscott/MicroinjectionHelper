@@ -12,8 +12,8 @@ android {
         applicationId "com.canthonyscott.microinjectioncalc"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 17
-        versionName "1.2"
+        versionCode 18
+        versionName "1.2.5"
     }
     buildTypes {
         release {
