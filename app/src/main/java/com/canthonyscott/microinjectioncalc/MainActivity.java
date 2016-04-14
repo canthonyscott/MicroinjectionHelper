@@ -217,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
                     // TODO: 4/14/2016 change color of action bars
                     ActionBar actionbar = getSupportActionBar();
                     actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#F44336")));
-
                 }
                 if (jsonObject.getString("status").equalsIgnoreCase("1")) {
                     statusResult.setText("Connected to Network!");
