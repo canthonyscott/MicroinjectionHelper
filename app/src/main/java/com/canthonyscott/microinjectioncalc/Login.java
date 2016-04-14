@@ -144,8 +144,8 @@ public class Login extends AppCompatActivity {
 //                    editor.putString("networkID",networkID);
 //                    editor.commit();
                     // close activity and reload MO injection
-//                    LogHistory logHistory = new LogHistory(getApplicationContext(), "Login");
-//                    logHistory.execute();
+                    LogHistory logHistory = new LogHistory(getApplicationContext(),"Login");
+                    logHistory.execute();
                     finish();
                     startActivity(new Intent(context, MOInjection.class));
                 }

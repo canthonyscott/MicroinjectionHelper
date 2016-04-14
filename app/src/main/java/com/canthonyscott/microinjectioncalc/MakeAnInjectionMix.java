@@ -77,8 +77,8 @@ public class MakeAnInjectionMix extends AppCompatActivity {
                 resultRNA.setText(rnaVol.toString());
                 resultPhenolRed.setText(phenolRed.toString());
                 resultWater.setText(water.toString());
-//                LogHistory logHistory = new LogHistory(getApplicationContext(), "MakeAnInjectionMix");
-//                logHistory.execute();
+                LogHistory logHistory = new LogHistory(getApplicationContext(), "MakeAnInjectionMix");
+                logHistory.execute();
 
             }
         });
