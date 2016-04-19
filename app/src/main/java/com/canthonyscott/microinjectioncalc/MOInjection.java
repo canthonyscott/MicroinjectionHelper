@@ -209,6 +209,7 @@ public class MOInjection extends AppCompatActivity{
                 injectionQuantity = injectionVolume * injectionConcentration * dilution;
                 // convert injection quantity into picograms, needed for consistent DB storage
                 Double injectionQuantityPg = injectionQuantity * 1000;
+                injectionQuantityPg = Double.parseDouble(new DecimalFormat("#####.##").format(injectionQuantityPg));
 
                 // round the results and send to UI
                 injectionVolume = Double.parseDouble(new DecimalFormat("#####.##").format(injectionVolume));
