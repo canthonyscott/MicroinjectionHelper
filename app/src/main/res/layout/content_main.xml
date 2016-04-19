@@ -73,8 +73,7 @@
                 style="@style/button_styles"
                 android:id="@+id/button_MO"
                 android:clickable="true"
-                android:onClick="openMOActivity"
-                android:background="@drawable/autumnbutton"/>
+                android:onClick="openMOActivity"/>
 
             <Button
                 android:onClick="savedOligos"
