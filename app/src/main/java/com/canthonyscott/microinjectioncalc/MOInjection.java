@@ -207,6 +207,9 @@ public class MOInjection extends AppCompatActivity{
                 // calculate the injection quantity and round to 2 decimal places
                 Double injectionQuantity;
                 injectionQuantity = injectionVolume * injectionConcentration * dilution;
+                // convert injection quantity into picograms, needed for consistent DB storage
+                Double injectionQuantityPg = injectionQuantity * 1000;
+                injectionQuantityPg = Double.parseDouble(new DecimalFormat("#####.##").format(injectionQuantityPg));
 
                 // round the results and send to UI
                 injectionVolume = Double.parseDouble(new DecimalFormat("#####.##").format(injectionVolume));
@@ -214,7 +217,7 @@ public class MOInjection extends AppCompatActivity{
                 injectionQuantity = Double.parseDouble(new DecimalFormat("#####.##").format(injectionQuantity));
                 injectionQuantityResult.setText(injectionQuantity.toString());
 
-                LogHistory logHistory = new LogHistory(getApplicationContext(), "Oligo", selectedMO.getGene(), injectionConcentration.toString(), numberOfMillimeters.getText().toString(),numberOfPumps.getText().toString(),injectionVolume.toString(),injectionQuantity.toString(),dilution1.getText().toString(), dilution2.getText().toString());
+                LogHistory logHistory = new LogHistory(getApplicationContext(), "Oligo", selectedMO.getGene(), injectionConcentration.toString(), numberOfMillimeters.getText().toString(),numberOfPumps.getText().toString(),injectionVolume.toString(),injectionQuantityPg.toString(),dilution1.getText().toString(), dilution2.getText().toString());
                 logHistory.execute();
 
             }
