@@ -61,26 +61,48 @@
 
         <LinearLayout
             android:paddingRight="10dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
                 android:text="Oligo Injection"
+                style="@style/button_styles"
                 android:id="@+id/button_MO"
                 android:clickable="true"
-                android:onClick="openMOActivity" />
+                android:onClick="openMOActivity"/>
 
             <Button
                 android:onClick="savedOligos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:text="Saved Oligos"
+                style="@style/button_styles"
                 android:layout_below="@+id/linearLayout"
                 android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:text="RNA Injection"
+                style="@style/button_styles"
+                android:id="@+id/button_RNA"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:onClick="openRNAActivity" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:text="Calculate Injection Mix"
+                style="@style/button_styles"
+                android:id="@+id/calcMix"
+                android:onClick="calcRNAMix"/>
+
             <!--<Button-->
                 <!--android:id="@+id/login"-->
                 <!--android:onClick="login"-->
@@ -90,31 +112,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:paddingLeft="10dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RNA Injection"
-                android:id="@+id/button_RNA"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:clickable="true"
-                android:onClick="openRNAActivity" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Calculate Injection Mix"
-                android:id="@+id/calcMix"
-                android:onClick="calcRNAMix"/>
-
-
-        </LinearLayout>
 
 
     </LinearLayout>
