@@ -24,7 +24,10 @@
         <item name="android:background">@color/colorButtons</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:layout_height">50dp</item>
+    </style>
 
+    <style name="mix_labels" parent="AppTheme">
+        <item name="android:textSize">25sp</item>
     </style>
 
 </resources>
