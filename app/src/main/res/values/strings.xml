@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Microinjection Calculator</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_moinjection">MO Injection</string>
+    <string name="title_activity_moinjection">Oligo Injection</string>
     <string name="title_activity_rnainjection">RNA Injection</string>
     <string name="main_title">Microinjection Calculator</string>
     <string name="measure_intro">Enter 1 ul capillary tube measurements</string>
@@ -11,7 +11,7 @@
     <string name="title_activity_remove_mo">Saved Oligos</string>
     <string name="reset_database">Reset Local Database</string>
     <string name="delete_single_mo">Delete MO</string>
-    <string name="title_activity_make_an_injection_mix">MakeAnInjectionMix</string>
+    <string name="title_activity_make_an_injection_mix">Calculate Mix</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
