@@ -63,10 +63,11 @@
     </LinearLayout>
     <Button
         android:id="@+id/addMO"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Save Morpholino"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        style="@style/button_styles"/>
 
 </LinearLayout>
