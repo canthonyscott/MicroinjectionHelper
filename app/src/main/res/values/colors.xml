@@ -9,4 +9,5 @@
     <color name="success">#29a329</color>
     <color name="failed">#b30000</color>
     <color name="black">#000000</color>
+    <color name="colorButtons">#64B5F6</color>
 </resources>

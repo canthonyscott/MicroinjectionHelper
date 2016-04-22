@@ -8,10 +8,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -40,7 +42,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String url;
     private TextView statusResult;
     private SharedPreferences prefs;
     private TextView loggedInAs;
@@ -212,6 +213,11 @@ public class MainActivity extends AppCompatActivity {
             try {
                 jsonObject = new JSONObject(s);
                 serverMessage = jsonObject.getString("serverMessage");
+                if (serverMessage.equals("You are connected to a testing DB")){
+                    // TODO: 4/14/2016 change color of action bars
+                    ActionBar actionbar = getSupportActionBar();
+                    actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#F44336")));
+                }
                 if (jsonObject.getString("status").equalsIgnoreCase("1")) {
                     statusResult.setText("Connected to Network!");
                     statusResult.setTextColor(Color.parseColor("#29a329"));
@@ -269,8 +275,6 @@ public class MainActivity extends AppCompatActivity {
             String paramString = sbParams.toString();
 
             try {
-//                urlObj = new URL(url);
-//                conn = (HttpsURLConnection) urlObj.openConnection();
                 conn = getNetworkResource.getSSLUrlConnection();
                 conn.setDoOutput(true);
                 conn.setDoInput(true);
