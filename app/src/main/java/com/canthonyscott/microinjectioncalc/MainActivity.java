@@ -1,5 +1,6 @@
 package com.canthonyscott.microinjectioncalc;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -150,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("ValidFragment")
     public class displayServerMessage extends DialogFragment {
         // this class displays a one-time dialog message to alert users about the heavy code updates
         @Override
