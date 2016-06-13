@@ -150,6 +150,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, MakeAnInjectionMix.class));
     }
 
+    public void injHistView(View view){
+        startActivity(new Intent(this, ViewHistory.class));
+
+    }
+
 
     @SuppressLint("ValidFragment")
     public class displayServerMessage extends DialogFragment {
