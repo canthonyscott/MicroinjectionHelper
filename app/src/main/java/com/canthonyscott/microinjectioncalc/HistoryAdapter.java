@@ -39,7 +39,7 @@ public class HistoryAdapter extends ArrayAdapter<HistoryItem> {
             holder.reagent = (TextView) row.findViewById(R.id.history_reagent);
             holder.nanoliters = (TextView) row.findViewById(R.id.history_nl);
             holder.pigograms = (TextView) row.findViewById(R.id.history_pg);
-            holder.pigograms = (TextView) row.findViewById(R.id.history_date);
+            holder.date = (TextView) row.findViewById(R.id.history_date);
 
             row.setTag(holder);
         } else{
@@ -50,7 +50,7 @@ public class HistoryAdapter extends ArrayAdapter<HistoryItem> {
         holder.reagent.setText(historyItem.getReagent());
         holder.nanoliters.setText(historyItem.getNanoliters());
         holder.pigograms.setText(historyItem.getPicograms());
-        holder.pigograms.setText(historyItem.getDate());
+        holder.date.setText(historyItem.getDate());
 
         return  row;
     }

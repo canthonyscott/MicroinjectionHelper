@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -56,6 +57,10 @@ public class ViewHistory extends AppCompatActivity {
 
         ListView listViewMO = (ListView) findViewById(R.id.historyList);
         adapter = new HistoryAdapter(this, R.layout.listview_history_item, historyArray);
+        View header = getLayoutInflater().inflate(R.layout.listview_history_header, null);
+        listViewMO.addHeaderView(header);
+
+        listViewMO.setAdapter(adapter);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
