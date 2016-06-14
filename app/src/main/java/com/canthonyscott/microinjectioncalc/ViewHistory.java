@@ -9,10 +9,12 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -52,7 +54,7 @@ public class ViewHistory extends AppCompatActivity {
         CookieManager cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
 
-        final ListView listViewMO = (ListView) findViewById(R.id.historyList);
+        ListView listViewMO = (ListView) findViewById(R.id.historyList);
         adapter = new HistoryAdapter(this, R.layout.listview_history_item, historyArray);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -98,7 +100,18 @@ public class ViewHistory extends AppCompatActivity {
             String uniqueID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
             paramData.put("uniqueID", uniqueID);
             String response = sendHttpRequest();
-            // TODO: 6/13/2016 PARSE THE RESPOSNE AND LOAD THE JSON ARRAY INTO A HISTORY ITEM ARRAY AND UPDATE ADAPTER 
+            try{
+                jsonObject = new JSONObject(response);
+                if(jsonObject.getString("status").equals("1")){
+                    jsonArray = jsonObject.getJSONArray("InjHistory");
+                    parseJsonData(jsonArray);
+                    return "victory";
+                } else {
+                    return "failed";
+                }
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
             return null;
         }
 
@@ -106,6 +119,18 @@ public class ViewHistory extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             pDialog.dismiss();
+            if (s.equals("failed")){
+                Toast.makeText(context, "You are not logged into the server", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, "History Loaded", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
+                // loop for testing parsed array
+                for(HistoryItem item : historyArray){
+                    Log.d("ViewHistory","array item: " + item.getReagent());
+
+                }
+
+            }
         }
 
         private String sendHttpRequest(){
@@ -166,6 +191,21 @@ public class ViewHistory extends AppCompatActivity {
             }
 
         }
+
+        private void parseJsonData(JSONArray array) throws JSONException {
+            historyArray.clear();
+            for (int i = 0; i < array.length(); i++){
+                JSONObject obj = array.getJSONObject(i);
+                String reagent = obj.getString("Reagent");
+                String nanoliters = obj.getString("nl");
+                String pigograms = obj.getString("pg");
+                String date = obj.getString("date");
+
+                HistoryItem temp = new HistoryItem(date, reagent, nanoliters, pigograms);
+                historyArray.add(temp);
+            }
+        }
+
 
     }
 
