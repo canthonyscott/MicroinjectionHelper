@@ -64,6 +64,16 @@
                 android:id="@+id/calcMix"
                 android:onClick="calcRNAMix"/>
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:text="History"
+                style="@style/button_styles"
+                android:id="@+id/history"
+                android:onClick="injHistView"/>
+
+
+
             <!--<Button-->
                 <!--android:id="@+id/login"-->
                 <!--android:onClick="login"-->

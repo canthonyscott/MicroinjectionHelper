@@ -76,4 +76,5 @@
     <string name="title_activity_create_group_id">CreateGroupID</string>
     <string name="title_activity_manage_shared_oligos">Remove Shared Oligos</string>
     <string name="sharedOligoInfo">These are shared oligos you have added. Removing them from here removes them from the shared database</string>
+    <string name="title_activity_view_history">View History</string>
 </resources>
