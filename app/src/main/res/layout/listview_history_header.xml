@@ -22,7 +22,7 @@
         android:textSize="14sp"
         android:textColor="#FFFFFF"
         android:background="@color/colorAccent"
-        android:text="nanoliters"
+        android:text="nl"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         />
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:background="@color/colorAccent"
-        android:text="picograms"
+        android:text="pg"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         />
@@ -45,7 +45,7 @@
         android:textSize="14sp"
         android:textColor="#FFFFFF"
         android:background="@color/colorAccent"
-        android:text="date/time"
+        android:text="date"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         />

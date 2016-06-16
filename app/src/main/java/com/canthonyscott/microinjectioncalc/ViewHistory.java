@@ -68,6 +68,8 @@ public class ViewHistory extends AppCompatActivity {
         if((prefs.getString("connectedToNetwork", "0")).equals("1")){
             DownloadHistory dh = new DownloadHistory();
             dh.execute();
+            LogHistory lh = new LogHistory(context, "History Viewed");
+            lh.execute();
         } else{
             Toast.makeText(ViewHistory.this, "Not connected to network, You shouldn't be here", Toast.LENGTH_SHORT).show();
         }

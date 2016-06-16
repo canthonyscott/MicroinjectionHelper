@@ -225,10 +225,6 @@ public class MOInjection extends AppCompatActivity{
 
     }
 
-    private void SaveState(){
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_mo_injection, menu);
@@ -247,6 +243,8 @@ public class MOInjection extends AppCompatActivity{
                 // Downloaded the Shared Database if logged in
                 DownloadOligos downloadOligos = new DownloadOligos();
                 downloadOligos.execute();
+                LogHistory lh = new LogHistory(context,"Shared Oligos Downlaoded");
+                lh.execute();
             } else {
                 Toast.makeText(MOInjection.this, "Not connected to server", Toast.LENGTH_SHORT).show();
             }
@@ -261,6 +259,8 @@ public class MOInjection extends AppCompatActivity{
                 db.close();
                 dbHelper.close();
                 Toast.makeText(MOInjection.this, "Saved " + gene + " to your local database", Toast.LENGTH_SHORT).show();
+                LogHistory lh = new LogHistory(context, "Saved Shared to local DB");
+                lh.execute();
             } else {
                 Toast.makeText(MOInjection.this, "You must download shared oligos first", Toast.LENGTH_SHORT).show();
             }
