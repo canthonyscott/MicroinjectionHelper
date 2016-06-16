@@ -259,6 +259,8 @@ public class MOInjection extends AppCompatActivity{
                 db.close();
                 dbHelper.close();
                 Toast.makeText(MOInjection.this, "Saved " + gene + " to your local database", Toast.LENGTH_SHORT).show();
+                LogHistory lh = new LogHistory(context, "Saved Shared to local DB");
+                lh.execute();
             } else {
                 Toast.makeText(MOInjection.this, "You must download shared oligos first", Toast.LENGTH_SHORT).show();
             }
