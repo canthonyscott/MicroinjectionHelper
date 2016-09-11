@@ -7,6 +7,9 @@ android:
     - android-23
     - extra-android-m2repository
     - extra-google-m2repositor
+# The system images if you need to run emulator during your tests
+    - sys-img-armeabi-v7a-android-23
+    - sys-img-x86-android-23
 
 before_install:
  - chmod +x gradlew
