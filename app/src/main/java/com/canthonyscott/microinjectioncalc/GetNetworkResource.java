@@ -58,7 +58,7 @@ public class GetNetworkResource {
         cookieToSend = cookiePart1 + cookie;
         Log.d("GetSavedLoginCookie", cookieToSend);
 
-        String serverAddress = prefs.getString("serverAddressDomain", "canthonyscott.tk:1106");
+        String serverAddress = prefs.getString("serverAddressDomain1", "canthonyscott.com:1106");
         url = "https://" + serverAddress + "/" + phpFile;
         Log.d("GetNetworkResource", "url: " + url);
     }
