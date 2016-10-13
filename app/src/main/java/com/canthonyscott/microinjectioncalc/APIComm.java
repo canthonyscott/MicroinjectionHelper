@@ -26,6 +26,55 @@ public class APIComm {
     public APIComm() {
     }
 
+    public String makeHttpsRequestGET(String url, String token){
+
+        String base_url = "https://injectioncalculatorapi.appspot.com";
+        String specificUrl = url;
+        String wholeUrl = base_url + specificUrl;
+        HttpsURLConnection conn;
+        StringBuilder result = null;
+
+        // SEND POST REQUEST TO SERVER
+        try{
+            Log.d("APIComm", "whole url: " + wholeUrl);
+            URL InjCalcAPI = new URL(wholeUrl);
+            conn = (HttpsURLConnection) InjCalcAPI.openConnection();
+            conn.setRequestMethod("GET");
+//            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept-Charset", charset);
+            conn.setRequestProperty("Authorization", token);
+            conn.connect();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return "failed";
+        }
+
+        // RECIEVE THE RESPONSE FROM THE SERVER
+        try{
+            InputStream in = new BufferedInputStream(conn.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            result = new StringBuilder();
+            String line;
+            while((line = reader.readLine()) != null){
+                result.append(line);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        try{
+            int responseCode = conn.getResponseCode();
+            Log.d("APIComm", "Response Code: " + responseCode);
+            if (responseCode != 200)
+                return "failed";
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        conn.disconnect();
+        return result.toString();
+    }
+
+
 
     public String makeHttpsRequestPOST(String url, HashMap<String, String> params){
 

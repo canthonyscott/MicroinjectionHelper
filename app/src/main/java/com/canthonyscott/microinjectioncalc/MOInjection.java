@@ -30,13 +30,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.CookieHandler;
-import java.net.CookieManager;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -59,14 +52,9 @@ public class MOInjection extends AppCompatActivity{
     private final static String primaryColor = "#4CAF50";
 
     // some variables needed for broad scope
-    private String serverAddress = null;
-    private String URL_DOWNLOAD_OLIGOS = null;
     private Context context;
     private SharedPreferences sharedPreferences;
-    private boolean networkConnected = false;
     private boolean showingShared = false;
-
-    private GetNetworkResource getNetworkResource;
 
     // refresh everything if the activity is returned to using the back button
     @Override
@@ -83,11 +71,6 @@ public class MOInjection extends AppCompatActivity{
         setContentView(R.layout.activity_moinjection);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getNetworkResource = new GetNetworkResource(getApplicationContext(), "downloadOligos.php");
-
-        CookieManager cookieManager = new CookieManager();
-        CookieHandler.setDefault(cookieManager);
-
 
         final EditText numberOfPumps = (EditText) findViewById(R.id.numberOfPumps);
         final EditText numberOfMillimeters = (EditText) findViewById(R.id.numberOfMillimeters);
@@ -109,12 +92,6 @@ public class MOInjection extends AppCompatActivity{
 //        serverAddress = sharedPreferences.getString("serverAddressDomain","canthonyscott.tk:1106");
 //        URL_DOWNLOAD_OLIGOS = "http://" + serverAddress + "/downloadOligos.php";
 
-
-
-        // check if network is currently connected
-        if(sharedPreferences.getString("connectedToNetwork", "0").equals("1")){
-            networkConnected = true;
-        }
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -239,15 +216,12 @@ public class MOInjection extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.downloadOligos) {
-            if(networkConnected){
-                // Downloaded the Shared Database if logged in
-                DownloadOligos downloadOligos = new DownloadOligos();
-                downloadOligos.execute();
-                LogHistory lh = new LogHistory(context,"Shared Oligos Downlaoded");
-                lh.execute();
-            } else {
-                Toast.makeText(MOInjection.this, "Not connected to server", Toast.LENGTH_SHORT).show();
-            }
+            // Downloaded the Shared Database if logged in
+            DownloadOligos downloadOligos = new DownloadOligos();
+            downloadOligos.execute();
+            LogHistory lh = new LogHistory(context,"Shared Oligos Downlaoded");
+            lh.execute();
+
         }
         if (id == R.id.saveToLocalDB){
             if (showingShared == true){
@@ -355,20 +329,19 @@ public class MOInjection extends AppCompatActivity{
         @Override
         protected String doInBackground(String... params) {
 
-            String response = sendHttpRequest();
+            String token = sharedPreferences.getString("auth_token", "LOGOUT");
+            APIComm InjCalcAPI = new APIComm();
+            String response = InjCalcAPI.makeHttpsRequestGET("/oligos/", token);
+
             try {
-                jsonObject = new JSONObject(response);
-                if (jsonObject.getString("status").equalsIgnoreCase("0")){
-                    return "failed";
-                } else {
-                    jsonArray = jsonObject.getJSONArray("oligos");
-                    parseArray(jsonArray);
-                    return "victory";
-                }
+                jsonArray = new JSONArray(response);
+                parseArray(jsonArray);
             } catch (JSONException e) {
                 e.printStackTrace();
                 return "failed";
             }
+
+            return "victory";
         }
 
         @Override
@@ -395,46 +368,14 @@ public class MOInjection extends AppCompatActivity{
 
         }
 
-        private String sendHttpRequest(){
-
-
-            // connect
-            try {
-                url = new URL(getNetworkResource.getUrl());
-                conn = getNetworkResource.getSSLUrlConnection();
-                conn.setDoInput(true);
-                conn.setConnectTimeout(15000);
-                conn.setRequestProperty("Cookie", getNetworkResource.getCookieToSend());
-                conn.connect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // receive response
-            try {
-                InputStream in = new BufferedInputStream(conn.getInputStream());
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
-                result = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null){
-                    result.append(line);
-                }
-                return result.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "";
-            } finally {
-                conn.disconnect();
-            }
-
-        }
 
         private void parseArray(JSONArray jsonArray){
             moList.clear();
             for (int i = 0; i < jsonArray.length(); i++){
                 try {
                     JSONObject obj = jsonArray.getJSONObject(i);
-                    String name = obj.getString("OligoName");
-                    Double molWt = Double.parseDouble(obj.getString("MolecularWeight"));
+                    String name = obj.getString("gene");
+                    Double molWt = Double.parseDouble(obj.getString("molecular_weight"));
 
                     moList.add(new Morpholino(molWt,name,-1));
                 } catch (JSONException e) {
