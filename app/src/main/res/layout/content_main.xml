@@ -87,50 +87,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="bottom">
-
-        <TextView
-            android:layout_gravity="bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Network Status:"
-            android:textColor="@color/grey"
-            android:id="@+id/networkStatus" />
-        <TextView
-            android:id="@+id/statusResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disabled (Change in Settings)"
-            android:textColor="@color/grey"
-            android:layout_marginLeft="40dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logged in as: "
-            android:textColor="@color/grey"
-            android:id="@+id/textView4" />
-        <TextView
-            android:id="@+id/loggedInAs"
-            android:text="disabled"
-            android:textColor="@color/grey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="version name"
-            android:layout_marginBottom="59dp"
-            android:id="@+id/versionNameMain" />
-
-
-    </LinearLayout>
-
 
 </LinearLayout>
 
