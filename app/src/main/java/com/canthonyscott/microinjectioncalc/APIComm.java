@@ -72,6 +72,8 @@ public class APIComm {
         try{
             int responseCode = conn.getResponseCode();
             Log.d("APIComm", "Response Code: " + responseCode);
+            if (responseCode != 200)
+                    return "failed";
         } catch (IOException e){
             e.printStackTrace();
         }

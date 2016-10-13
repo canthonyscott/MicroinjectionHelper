@@ -106,7 +106,7 @@ public class Login extends AppCompatActivity {
             super.onPostExecute(s);
             pDialog.dismiss();
             if (s.equalsIgnoreCase("failed")){
-                String message = "Could not connect to server";
+                String message = "Failed to login. Is your username and password correct?";
                 result.setText(message);
                 return;
             }

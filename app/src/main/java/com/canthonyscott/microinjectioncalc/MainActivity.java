@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Log.d("MainActivity", "Stored auth_token: " + prefs.getString("auth_token", "LOGOUT"));
 
         // do some cleanup of unneeded resources from previous versions
 
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.settingsLogout) {
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("cookie", "a:1");
+            editor.putString("auth_token", "LOGOUT");
             editor.commit();
             finish();
             startActivity(new Intent(this, MainActivity.class));
