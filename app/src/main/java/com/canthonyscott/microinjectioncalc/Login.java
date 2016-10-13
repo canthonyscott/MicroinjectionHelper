@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,9 +18,6 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookieStore;
 import java.util.HashMap;
 
 public class Login extends AppCompatActivity {
@@ -33,10 +29,6 @@ public class Login extends AppCompatActivity {
     private TextView result;
 
     private SharedPreferences sharedPreferences;
-    private CookieManager cookieManager;
-
-    private GetNetworkResource getNetworkResource;
-
     Context context;
 
 
@@ -48,11 +40,6 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         context = getApplicationContext();
-
-        getNetworkResource = new GetNetworkResource(getApplicationContext(), "login.php");
-
-        cookieManager = new CookieManager();
-        CookieHandler.setDefault(cookieManager);
 
 
         // generate URL to server resource
@@ -106,13 +93,11 @@ public class Login extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String uniqueID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
             paramData.put("username", user);
             paramData.put("password", pass);
-            paramData.put("uniqueID", uniqueID);
 
-            JSONParser connect = new JSONParser(getNetworkResource);
-            rawJSONData = connect.makeHttpRequest(getNetworkResource.getUrl(),"POST",paramData);
+            APIComm connect = new APIComm();
+            rawJSONData = connect.makeHttpsRequestPOST("/api-token-auth/", paramData);
             return rawJSONData;
         }
 
@@ -126,39 +111,23 @@ public class Login extends AppCompatActivity {
                 return;
             }
             Log.d("LogIN", "Result: " + rawJSONData);
+
             try {
                 jsonObject = new JSONObject(rawJSONData);
-                //check if status failed
-                if (jsonObject.getString("status").equalsIgnoreCase("0")){
-                    Log.d("LogIN","Password does not match");
-                    showResultToUI();
-                    return;
-                } else if (jsonObject.get("status").equals("1")){
-                    String networkID = jsonObject.getString("userID");
-                    showResultToUI();
+                if (jsonObject.has("token")){
+                    saveToken(jsonObject.getString("token"));
+                    Log.d("Login", "Saved to token: " + jsonObject.getString("token"));
                     clearScreen();
-                    CookieStore store = cookieManager.getCookieStore();
-                    saveCookie();
-                    // save Database userID for future requets
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("networkID",networkID);
-//                    editor.commit();
-                    // close activity and reload MO injection
-                    LogHistory logHistory = new LogHistory(getApplicationContext(),"Login");
-                    logHistory.execute();
                     finish();
                     startActivity(new Intent(context, MOInjection.class));
+                } else {
+                    Log.d("Login", "Failed to get Auth Token");
                 }
-            } catch (JSONException e) {
+                } catch (JSONException e){
                 e.printStackTrace();
             }
-        }
+            }
 
-        private void showResultToUI() throws JSONException {
-            String messageString;
-            messageString = jsonObject.getString("message");
-            result.setText(messageString);
-        }
 
         private void clearScreen(){
             final EditText username = (EditText) findViewById(R.id.username);
@@ -169,18 +138,13 @@ public class Login extends AppCompatActivity {
 
     }
 
-    // saved server provided cookie to sharedprefs
-    private void saveCookie(){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        String wholeCookie = cookieManager.getCookieStore().getCookies().toString();
-        String [] split = wholeCookie.split("=");
-        String cookie = split[1];
-        String cookieSub = cookie.substring(0, cookie.length()-1);
-        Log.d("saveCookie", cookieSub);
-        editor.putString("cookie", cookieSub);
-        editor.commit();
 
-    }
+    private void saveToken(String token){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String authToken = "Token " + token;
+        editor.putString("auth_token", authToken);
+        editor.commit();
+}
 
 
 
