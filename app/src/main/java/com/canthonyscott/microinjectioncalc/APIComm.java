@@ -1,5 +1,8 @@
 package com.canthonyscott.microinjectioncalc;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -28,7 +31,7 @@ public class APIComm {
 
     public String makeHttpsRequestGET(String url, String token){
 
-        String base_url = "https://injectioncalculatorapi.appspot.com";
+        String base_url = "https://injcalcapi.herokuapp.com";
         String specificUrl = url;
         String wholeUrl = base_url + specificUrl;
         HttpsURLConnection conn;
@@ -76,9 +79,9 @@ public class APIComm {
 
 
 
-    public String makeHttpsRequestPOST(String url, HashMap<String, String> params){
+    public String makeHttpsRequestPOST(String url, HashMap<String, String> params, Boolean useToken, Context context){
 
-        String base_url = "https://injectioncalculatorapi.appspot.com";
+        String base_url = "https://injcalcapi.herokuapp.com";
         String specificUrl = url;
         String wholeUrl = base_url + specificUrl;
         HttpsURLConnection conn;
@@ -92,6 +95,11 @@ public class APIComm {
             conn.setRequestMethod("POST");
 //            conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept-Charset", charset);
+            if(useToken){
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                String token = sharedPreferences.getString("auth_token", "LOGOUT");
+                conn.setRequestProperty("Authorization", token);
+            }
             conn.setDoOutput(true);
             conn.connect();
             DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
@@ -121,13 +129,16 @@ public class APIComm {
         try{
             int responseCode = conn.getResponseCode();
             Log.d("APIComm", "Response Code: " + responseCode);
-            if (responseCode != 200)
-                    return "failed";
         } catch (IOException e){
             e.printStackTrace();
         }
         conn.disconnect();
-        return result.toString();
+        try{
+            Log.d("APIComm", "response: " + result.toString());
+            return result.toString();
+        } catch (NullPointerException e){
+            return "failed";
+        }
     }
 
     private String paramsToString(HashMap<String,String> params){

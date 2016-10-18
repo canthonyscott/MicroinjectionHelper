@@ -88,9 +88,6 @@ public class MOInjection extends AppCompatActivity{
         // convert to mM concentration to M concentration
         oligoConcentration = oligoConcentration/1000;
 
-        //get URL from sharedprefs
-//        serverAddress = sharedPreferences.getString("serverAddressDomain","canthonyscott.tk:1106");
-//        URL_DOWNLOAD_OLIGOS = "http://" + serverAddress + "/downloadOligos.php";
 
 
 
@@ -219,8 +216,6 @@ public class MOInjection extends AppCompatActivity{
             // Downloaded the Shared Database if logged in
             DownloadOligos downloadOligos = new DownloadOligos();
             downloadOligos.execute();
-            LogHistory lh = new LogHistory(context,"Shared Oligos Downlaoded");
-            lh.execute();
 
         }
         if (id == R.id.saveToLocalDB){
@@ -243,9 +238,7 @@ public class MOInjection extends AppCompatActivity{
             deleteSelectedMO(selectedMO);
             adapter.notifyDataSetChanged();
         }
-        if (id == R.id.logout){
-            logout();
-        }
+
         if (id == R.id.settings) {
             startActivity(new Intent(this, SettingsActivity.class));
         }
@@ -265,12 +258,6 @@ public class MOInjection extends AppCompatActivity{
             Toast.makeText(MOInjection.this, "Removed MO from the database", Toast.LENGTH_SHORT).show();
             moList.remove(selectedMO);
         }
-    }
-
-    private void logout(){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("cookie", "a:1");
-        editor.commit();
     }
 
 
@@ -353,18 +340,22 @@ public class MOInjection extends AppCompatActivity{
                 finish();
                 startActivity(new Intent(context, Login.class));
             } else if (s.equals("victory")){
-                Toast.makeText(context, "Shared Oligos Successfully Loaded", Toast.LENGTH_SHORT).show();
                 showingShared = true;
             }
-            // sort the downloaded array list alphabetically
-            Collections.sort(moList, new Comparator<Morpholino>() {
-                @Override
-                public int compare(Morpholino lhs, Morpholino rhs) {
-                    return lhs.toString().compareToIgnoreCase(rhs.toString());
-                }
-            });
-            adapter.notifyDataSetChanged();
-            selectedMO = moList.get(0);
+            try {
+                // sort the downloaded array list alphabetically
+                Collections.sort(moList, new Comparator<Morpholino>() {
+                    @Override
+                    public int compare(Morpholino lhs, Morpholino rhs) {
+                        return lhs.toString().compareToIgnoreCase(rhs.toString());
+                    }
+                });
+                adapter.notifyDataSetChanged();
+                selectedMO = moList.get(0);
+                Toast.makeText(context, "Shared Oligos Successfully Loaded", Toast.LENGTH_SHORT).show();
+            } catch (IndexOutOfBoundsException e){
+                Toast.makeText(MOInjection.this, "You don't have any shared oligos yet.", Toast.LENGTH_SHORT).show();
+            }
 
         }
 

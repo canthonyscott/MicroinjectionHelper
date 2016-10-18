@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
             paramData.put("password", pass);
 
             APIComm connect = new APIComm();
-            rawJSONData = connect.makeHttpsRequestPOST("/api-token-auth/", paramData);
+            rawJSONData = connect.makeHttpsRequestPOST("/api-token-auth/", paramData, false, getApplicationContext());
             return rawJSONData;
         }
 

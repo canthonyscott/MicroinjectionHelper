@@ -19,11 +19,7 @@
         android:id="@+id/deleteMO"
         app:showAsAction="never"
         android:title="Delete Selected MO"/>
-    <item
-        android:id="@+id/logout"
-        app:showAsAction="never"
-        android:title="Logout"
-        />
+
     <item
         android:id="@+id/settings"
         app:showAsAction="never"
