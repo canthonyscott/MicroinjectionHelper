@@ -33,8 +33,6 @@ public class CreateGroupID extends AppCompatActivity {
     String pass;
     String confirm;
 
-    private GetNetworkResource getNetworkResource;
-
     // json node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -46,9 +44,6 @@ public class CreateGroupID extends AppCompatActivity {
         setContentView(R.layout.activity_create_group_id);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        getNetworkResource = new GetNetworkResource(getApplicationContext(), "ADD_USER.php");
-
 
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
@@ -65,6 +60,14 @@ public class CreateGroupID extends AppCompatActivity {
 
                 if (user.equals("") || pass.equals("") || confirm.equals("")) {
                     Toast.makeText(CreateGroupID.this, "Please Enter all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // make sure password fields match
+                if (pass.equals(confirm) == false){
+                    Toast.makeText(CreateGroupID.this, "Passwords do not match", Toast.LENGTH_LONG).show();
+                    password.setText("");
+                    confirmPassword.setText("");
                     return;
                 }
 
@@ -92,12 +95,9 @@ public class CreateGroupID extends AppCompatActivity {
         protected String doInBackground(String... params) {
             paramData.put("username", user);
             paramData.put("password", pass);
-            paramData.put("confirm", confirm);
 
-            JSONParser jsonParser = new JSONParser(getNetworkResource);
-            rawJsonData = jsonParser.makeHttpRequest(getNetworkResource.getUrl(), "POST", paramData);
-            Log.d("AddUSer", "Raw JSON data: " + rawJsonData);
-
+            APIComm connect = new APIComm();
+            rawJsonData = connect.makeHttpsRequestPOST("/accounts/", paramData, false, getApplicationContext());
             return rawJsonData;
         }
 
@@ -108,38 +108,17 @@ public class CreateGroupID extends AppCompatActivity {
             pDialog.dismiss();
             try {
                 jsonObject = new JSONObject(s);
-                Log.d("AddUser", "JSONObject to String: " + jsonObject.toString());
-                status = jsonObject.getString("status");
+                if (jsonObject.has("pk")){
+                    // SUCCESSFULLY CREATED ACCOUNT, REDIRECT TO LOGIN
+                    Toast.makeText(CreateGroupID.this, "Successfully created account. Please log in", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), Login.class));
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d("AddUser", "Failed to convert into JSON Object");
-            }
-            showResultToUI();
-            clearScreen();
-            // finish this activity and close the screen IF status is 1, else leave it
-            if (status.equals("1")){
-                finish();
-                startActivity(new Intent(getApplicationContext(), Login.class));
+                Log.d("CreateGroupID", "Failed to convert into JSON Object");
             }
 
-        }
-        private void showResultToUI() {
-            String messageString = null;
-            try {
-                messageString = jsonObject.getString("message");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            // send to resultUI
-            resultUI.setText(messageString);
-        }
-
-        private void clearScreen() {
-            final String CLEAR = "";
-            username.setText(CLEAR);
-            password.setText(CLEAR);
-            confirmPassword.setText(CLEAR);
         }
     }
 }

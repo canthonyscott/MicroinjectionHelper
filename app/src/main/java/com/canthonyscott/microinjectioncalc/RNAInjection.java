@@ -74,10 +74,6 @@ public class RNAInjection extends AppCompatActivity {
                 injectionQuantity.setText(nanogramsInjected.toString());
                 injectionQuantityPg.setText(picogramsInjected.toString());
                 // log history to database
-//                LogHistory logHistory = new LogHistory(getApplicationContext(), "RNAInjection");
-//                LogHistory logHistory = new LogHistory(getApplicationContext(), "RNAInjection", concentrationOfRNA.getText().toString(), numberOfMm.getText().toString(), numberOfPumps.getText().toString(), injectionVolume.toString(), picogramsInjected.toString());
-                LogHistory logHistory = new LogHistory(getApplicationContext(), "RNA", "RNA", concentrationOfRNA.getText().toString(), numberOfMm.getText().toString(), numberOfPumps.getText().toString(),injectionVolume.toString(),picogramsInjected.toString(),"na", "na");
-                logHistory.execute();
             }
         });
     }

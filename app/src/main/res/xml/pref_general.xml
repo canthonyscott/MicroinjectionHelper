@@ -10,21 +10,5 @@
         android:inputType="numberDecimal"
         />
 
-    <SwitchPreference
-        android:title="Use Networking Database"
-        android:defaultValue="true"
-        android:key="useNetworkDatabase"
-        />
-
-    <EditTextPreference
-        android:title="Server Address"
-        android:maxLines="1"
-        android:defaultValue="canthonyscott.com:1106"
-        android:key="serverAddressDomain1"
-        android:inputType="text"
-        android:dependency="useNetworkDatabase"
-        />
-
-
 
 </PreferenceScreen>
