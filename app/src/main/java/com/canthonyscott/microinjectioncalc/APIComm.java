@@ -141,6 +141,48 @@ public class APIComm {
         }
     }
 
+    public String makeHttpsRequestDELETE(String url, String token, Morpholino oligo){
+
+        String base_url = "https://injcalcapi.herokuapp.com";
+        String specificUrl = url;
+        String idToDelete = Integer.toString(oligo.getId());
+        String wholeUrl = base_url + specificUrl + idToDelete + "/";
+        Log.d("APIComm", "whole url: " + wholeUrl);
+        HttpsURLConnection conn;
+        StringBuilder result = null;
+
+        // SEND POST REQUEST TO SERVER
+        try{
+            Log.d("APIComm", "whole url: " + wholeUrl);
+            URL InjCalcAPI = new URL(wholeUrl);
+            conn = (HttpsURLConnection) InjCalcAPI.openConnection();
+            conn.setRequestMethod("DELETE");
+//            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept-Charset", charset);
+            conn.setRequestProperty("Authorization", token);
+            conn.connect();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return "failed";
+        }
+
+        // RECIEVE THE RESPONSE FROM THE SERVER
+        try{
+            int responseCode = conn.getResponseCode();
+            Log.d("APIComm", "Response Code: " + responseCode);
+            if (responseCode == 204){
+                return "success";
+            } else {
+                return "failed";
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+            return "failed";
+        }
+    }
+
+
     private String paramsToString(HashMap<String,String> params){
         StringBuilder sb = new StringBuilder();
         int i = 0;

@@ -1,11 +1,9 @@
 package com.canthonyscott.microinjectioncalc;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -28,9 +26,6 @@ public class AddMorpholino extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final String connectedToNetwork = prefs.getString("connectedToNetwork", "0");
-        Log.d(LOG_TAG,"Connected to Network status: " + connectedToNetwork);
 
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -48,12 +43,6 @@ public class AddMorpholino extends AppCompatActivity {
         final EditText molecularWeight = (EditText) findViewById(R.id.EditMolecularWeight);
         final Switch saveToNetwork = (Switch) findViewById(R.id.saveToNetwork);
 
-        // enable or disable switch based on network status
-        if (connectedToNetwork.equalsIgnoreCase("0")){
-            saveToNetwork.setEnabled(false);
-        } else {
-            saveToNetwork.setEnabled(true);
-        }
 
 
         addMO.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +87,7 @@ public class AddMorpholino extends AppCompatActivity {
                 Log.v(LOG_TAG, "SQLite connection closed");
 
                 // Add to network database if working connection exists
-                if (connectedToNetwork.equalsIgnoreCase("1") && (saveToNetwork.isChecked() == true)){
+                if ((saveToNetwork.isChecked() == true)){
                     AddOligoToNetworkDB addOligoToNetworkDB = new AddOligoToNetworkDB(mw,gene,getApplicationContext());
                     addOligoToNetworkDB.execute();
                 }

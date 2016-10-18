@@ -33,8 +33,6 @@ public class CreateGroupID extends AppCompatActivity {
     String pass;
     String confirm;
 
-    private GetNetworkResource getNetworkResource;
-
     // json node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";

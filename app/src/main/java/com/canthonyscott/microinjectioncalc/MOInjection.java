@@ -191,9 +191,6 @@ public class MOInjection extends AppCompatActivity{
                 injectionQuantity = Double.parseDouble(new DecimalFormat("#####.##").format(injectionQuantity));
                 injectionQuantityResult.setText(injectionQuantity.toString());
 
-                LogHistory logHistory = new LogHistory(getApplicationContext(), "Oligo", selectedMO.getGene(), injectionConcentration.toString(), numberOfMillimeters.getText().toString(),numberOfPumps.getText().toString(),injectionVolume.toString(),injectionQuantityPg.toString(),dilution1.getText().toString(), dilution2.getText().toString());
-                logHistory.execute();
-
             }
         });
 
@@ -228,8 +225,6 @@ public class MOInjection extends AppCompatActivity{
                 db.close();
                 dbHelper.close();
                 Toast.makeText(MOInjection.this, "Saved " + gene + " to your local database", Toast.LENGTH_SHORT).show();
-                LogHistory lh = new LogHistory(context, "Saved Shared to local DB");
-                lh.execute();
             } else {
                 Toast.makeText(MOInjection.this, "You must download shared oligos first", Toast.LENGTH_SHORT).show();
             }

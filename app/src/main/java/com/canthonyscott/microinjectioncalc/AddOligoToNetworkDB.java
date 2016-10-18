@@ -10,12 +10,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.DataOutputStream;
-import java.net.CookieManager;
-import java.net.URL;
 import java.util.HashMap;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by Anthony on 1/23/2016.
@@ -29,20 +24,7 @@ class AddOligoToNetworkDB extends AsyncTask<String, Void, String>{
     private double molecularWeight;
     private Context context;
     private String uniqueID;
-    private String cookie;
     private SharedPreferences sharedPreferences;
-    private CookieManager cookieManager;
-
-
-    private StringBuilder sbParams;
-    private final String charset = "UTF-8";
-    private URL urlObj;
-    private HttpsURLConnection conn;
-    private String paramsString;
-    private DataOutputStream wr;
-    private StringBuilder result;
-    GetNetworkResource getNetworkResource;
-
 
 
     private HashMap<String,String> oligoToAdd = new HashMap<>();
@@ -51,7 +33,6 @@ class AddOligoToNetworkDB extends AsyncTask<String, Void, String>{
         this.molecularWeight = molecularWeight;
         this.oligoName = oligoName;
         this.context = context;
-        getNetworkResource = new GetNetworkResource(context, "add_oligo.php");
 
         oligoToAdd.put("gene",oligoName);
         oligoToAdd.put("molecular_weight", Double.toString(molecularWeight));

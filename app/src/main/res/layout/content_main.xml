@@ -70,7 +70,8 @@
                 android:text="History"
                 style="@style/button_styles"
                 android:id="@+id/history"
-                android:onClick="injHistView"/>
+                android:onClick=""
+                android:visibility="invisible" />
 
 
 
