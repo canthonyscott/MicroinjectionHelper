@@ -1,5 +1,6 @@
 package com.canthonyscott.microinjectioncalc;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -307,6 +308,18 @@ public class MOInjection extends AppCompatActivity{
         StringBuilder result;
         JSONObject jsonObject;
         JSONArray jsonArray;
+        ProgressDialog pDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(MOInjection.this);
+            pDialog.setMessage("Connecting...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -329,6 +342,7 @@ public class MOInjection extends AppCompatActivity{
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            pDialog.dismiss();
             if (s.equals("failed")){
                 Toast.makeText(context, "You must be logged in. Redirecting...", Toast.LENGTH_LONG).show();
                //  send to log-in screen
