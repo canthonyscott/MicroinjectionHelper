@@ -88,6 +88,19 @@
 
     </LinearLayout>
 
+    <TextView
+        android:text="Manage Oligos online at:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/textView4" />
+    <TextView
+        android:text="https://InjCalcAPI.herokuapp.com"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/textView5" />
+
 
 </LinearLayout>
 
