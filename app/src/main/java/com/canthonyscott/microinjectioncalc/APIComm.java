@@ -81,7 +81,7 @@ public class APIComm {
 
     public String makeHttpsRequestPOST(String url, HashMap<String, String> params, Boolean useToken, Context context){
 
-        String base_url = "https://injcalcapi.herokuapp.com";
+        String base_url = "https://injcalcapi-staging.herokuapp.com/api/";
         String specificUrl = url;
         String wholeUrl = base_url + specificUrl;
         HttpsURLConnection conn;
