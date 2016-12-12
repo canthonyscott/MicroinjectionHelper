@@ -143,7 +143,7 @@ public class APIComm {
 
     public String makeHttpsRequestDELETE(String url, String token, Morpholino oligo){
 
-        String base_url = "https://injcalcapi.herokuapp.com";
+        String base_url = "https://injcalcapi.herokuapp.com/api/";
         String specificUrl = url;
         String idToDelete = Integer.toString(oligo.getId());
         String wholeUrl = base_url + specificUrl + idToDelete + "/";
