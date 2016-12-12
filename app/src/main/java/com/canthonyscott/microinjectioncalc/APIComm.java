@@ -25,13 +25,14 @@ import javax.net.ssl.HttpsURLConnection;
 public class APIComm {
 
     String charset = "UTF-8";
+    static String base_url = "https://injcalcapi.herokuapp.com/api";
+
 
     public APIComm() {
     }
 
     public String makeHttpsRequestGET(String url, String token){
 
-        String base_url = "https://injcalcapi.herokuapp.com";
         String specificUrl = url;
         String wholeUrl = base_url + specificUrl;
         HttpsURLConnection conn;
@@ -81,7 +82,6 @@ public class APIComm {
 
     public String makeHttpsRequestPOST(String url, HashMap<String, String> params, Boolean useToken, Context context){
 
-        String base_url = "https://injcalcapi-staging.herokuapp.com/api/";
         String specificUrl = url;
         String wholeUrl = base_url + specificUrl;
         HttpsURLConnection conn;
@@ -143,7 +143,6 @@ public class APIComm {
 
     public String makeHttpsRequestDELETE(String url, String token, Morpholino oligo){
 
-        String base_url = "https://injcalcapi.herokuapp.com/api/";
         String specificUrl = url;
         String idToDelete = Integer.toString(oligo.getId());
         String wholeUrl = base_url + specificUrl + idToDelete + "/";
