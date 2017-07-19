@@ -27,42 +27,46 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/button_MO"
+                style="@style/button_styles"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="10dp"
-                android:text="Oligo Injection"
-                style="@style/button_styles"
-                android:id="@+id/button_MO"
+                android:background="@color/accent"
                 android:clickable="true"
-                android:onClick="openMOActivity"/>
+                android:onClick="openMOActivity"
+                android:text="Oligo Injection" />
 
             <Button
-                android:onClick="savedOligos"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="10dp"
-                android:text="Saved Oligos"
                 style="@style/button_styles"
+                android:layout_width="match_parent"
                 android:layout_below="@+id/linearLayout"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:background="@color/accent"
+                android:onClick="savedOligos"
+                android:text="Saved Oligos" />
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_marginBottom="10dp"
-                android:text="RNA Injection"
-                style="@style/button_styles"
                 android:id="@+id/button_RNA"
-                android:layout_alignParentRight="true"
+                style="@style/button_styles"
+                android:layout_width="match_parent"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:background="@color/accent"
                 android:clickable="true"
-                android:onClick="openRNAActivity" />
+                android:onClick="openRNAActivity"
+                android:text="RNA Injection" />
 
             <Button
+                android:id="@+id/calcMix"
+                style="@style/button_styles"
                 android:layout_width="match_parent"
                 android:layout_marginBottom="10dp"
-                android:text="Calculate Injection Mix"
-                style="@style/button_styles"
-                android:id="@+id/calcMix"
-                android:onClick="calcRNAMix"/>
+                android:background="@color/accent"
+                android:onClick="calcRNAMix"
+                android:text="Calculate Injection Mix" />
 
             <Button
                 android:layout_width="match_parent"

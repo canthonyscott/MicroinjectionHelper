@@ -50,7 +50,7 @@ public class MOInjection extends AppCompatActivity{
     private ArrayAdapter<Morpholino> adapter;
 
     // color used for the fab below
-    private final static String primaryColor = "#2962FF";
+    private final static String primaryColor = "#4CAF50";
 
     // some variables needed for broad scope
     private Context context;
