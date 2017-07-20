@@ -71,12 +71,27 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:text="@string/MO_intro"/>
 
+        <TextView
+            android:id="@+id/stockMolarity"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textSize="10sp"
+            android:layout_width="match_parent"
+            android:gravity="right"
+            android:layout_height="match_parent"
+            android:text="####"/>
+
+
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:id="@+id/spinner"
             android:layout_weight="1"
             android:keepScreenOn="true"/>
+
+
 
     </LinearLayout>
 
@@ -153,7 +168,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:orientation="vertical"
-            android:paddingTop="25dp">
+            android:paddingTop="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -185,7 +200,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:orientation="vertical"
-            android:paddingTop="25dp">
+            android:paddingTop="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -215,7 +230,7 @@
             android:id="@+id/calculate"
             style="@style/button_styles"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_columnSpan="2"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"

@@ -85,7 +85,8 @@ public class MOInjection extends AppCompatActivity{
         // Get the stock oligo concentration from the user preferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         oligoConcentration = Float.parseFloat(sharedPreferences.getString("oligoMolarity", "1"));
-        molarityUI.setText(oligoConcentration.toString());
+        String concText = "Concentration: " + oligoConcentration.toString() + " mM";
+        molarityUI.setText(concText);
         // convert to mM concentration to M concentration
         oligoConcentration = oligoConcentration/1000;
 
