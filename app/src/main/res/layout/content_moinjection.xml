@@ -211,6 +211,19 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/calculate"
+            style="@style/button_styles"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_columnSpan="2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:elevation="0dp"
+            android:text="Calculate" />
+
+
 
     </GridLayout>
 
