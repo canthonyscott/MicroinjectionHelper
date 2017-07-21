@@ -1,9 +1,11 @@
 package com.canthonyscott.microinjectioncalc;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,7 +39,7 @@ public class MakeAnInjectionMix extends AppCompatActivity {
         final TextView resultRNA = (TextView) findViewById(R.id.result_RNA);
         final TextView resultPhenolRed = (TextView) findViewById(R.id.resultPhenolRed);
         final TextView resultWater = (TextView) findViewById(R.id.resultWater);
-        Button calculate = (Button) findViewById(R.id.calculate);
+        final Button calculate = (Button) findViewById(R.id.calculate);
         Button clear = (Button) findViewById(R.id.clear);
         
         
@@ -47,6 +49,11 @@ public class MakeAnInjectionMix extends AppCompatActivity {
                 double volume;
                 double concentration;
                 double stock;
+
+                // minimize the soft keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(calculate.getWindowToken(),0);
+
 
                 // sanitize all inputs and calculate
                 try {

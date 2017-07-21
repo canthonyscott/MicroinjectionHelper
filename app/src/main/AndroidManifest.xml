@@ -65,7 +65,8 @@
             android:label="@string/title_activity_make_an_injection_mix"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.canthonyscott.microinjectioncalc.MainActivity" />

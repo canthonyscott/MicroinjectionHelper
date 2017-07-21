@@ -1,218 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.canthonyscott.microinjectioncalc.MakeAnInjectionMix"
-    tools:showIn="@layout/activity_make_an_injection_mix">
+    tools:context=".MakeAnInjectionMix"
+    tools:showIn="@layout/activity_make_an_injection_mix"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stock RNA concentration" />
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@color/primary"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MakeAnInjectionMix"
+        tools:showIn="@layout/activity_make_an_injection_mix">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/stockConcentration"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="565.2"
-            android:inputType="numberDecimal"
-            android:maxLines="1"
-            android:textColorHint="@color/hintColor" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="ng/ul" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Desired Final Volume" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/desiredVolume"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="5"
-            android:inputType="numberDecimal"
-            android:maxLines="1"
-            android:textColorHint="@color/hintColor" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="ul" />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Desired Final RNA Concentration" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/desiredConcentration"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="300"
-            android:inputType="numberDecimal"
-            android:maxLines="1"
-            android:textColorHint="@color/hintColor" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="ng/ul" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/calculate"
-            style="@style/button_styles"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/accent"
-            android:text="Calculate" />
-
-        <Button
-            android:id="@+id/clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/calculate"
-            android:layout_marginLeft="50dp"
-            android:text="clear" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:background="@color/primary"
+            android:columnCount="2"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:rowCount="2">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_columnSpan="2"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="RNA (ul)" />
+
+                <TextView
+                    android:id="@+id/result_RNA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:inputType="none"
+                    android:paddingBottom="15dp"
+                    android:text="0.0"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_columnSpan="1"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="5X dye (ul)" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:inputType="none"
+                    android:id="@+id/resultPhenolRed"
+                    android:text="0.0"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_columnSpan="1"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="RNA (ul):"
-                style="@style/mix_labels"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/white"
+                    android:text="water (ul)" />
 
-            <TextView
-                android:id="@+id/result_RNA"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="0"
-                android:textSize="30sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:paddingBottom="15dp"
+                    android:id="@+id/resultWater"
+                    android:text="0.0"
+                    android:textAlignment="center"
+                    android:gravity="end"
+                    android:inputType="none"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"/>
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
+        </GridLayout>
+
+
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="20dp">
+            android:background="@color/white"
+            android:columnCount="2"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:rowCount="3">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="150dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5X dye (ul):"
-                style="@style/mix_labels"/>
+                android:layout_columnWeight="1"
+                android:layout_columnSpan="2"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/resultPhenolRed"
-                android:layout_width="100dp"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Stock RNA Concentration (ng/ul)"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/stockConcentration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="654.3"
+                    android:inputType="numberDecimal"
+                    android:linksClickable="false"
+                    android:maxLines="1"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="0"
-                android:textSize="30sp" />
+                android:layout_columnWeight="1"
+                android:layout_columnSpan="1"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Final Vol (ul)"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
 
+                <EditText
+                    android:id="@+id/desiredVolume"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="5"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:maxLines="1"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="30sp" />
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="20dp">
+            </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="150dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="water (ul):"
-                style="@style/mix_labels"/>
+                android:layout_columnWeight="1"
+                android:layout_columnSpan="1"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="15dp">
 
-            <TextView
-                android:id="@+id/resultWater"
-                android:layout_width="100dp"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Final conc. (ng/ul)"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+
+
+                <EditText
+                    android:id="@+id/desiredConcentration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="300"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:textAlignment="center"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/calculate"
+                style="@style/button_styles"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:hint="0"
-                android:gravity="center"
-                android:textSize="30sp" />
+                android:layout_columnSpan="2"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:elevation="0dp"
+                android:text="Calculate" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_columnSpan="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/calculate"
+                android:text="clear" />
 
 
 
 
-        </LinearLayout>
+
+        </GridLayout>
 
 
 
     </LinearLayout>
+</ScrollView>
 
 
-</LinearLayout>
+
+
