@@ -44,6 +44,28 @@
             android:gravity="end"
             android:textColor="@color/white"
             android:textSize="30sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textColor="@color/white"
+            android:text="picograms" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="15dp"
+            android:inputType="none"
+            android:ems="10"
+            android:id="@+id/injectionQuantityPg"
+            android:text="0.0"
+            android:textAlignment="viewEnd"
+            android:gravity="end"
+            android:textColor="@color/white"
+            android:textSize="30sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -91,6 +113,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:nextFocusDown="@id/numberOfPumps"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="RNA Concentration (ng/ul)"
@@ -98,14 +121,14 @@
                     android:textSize="12sp" />
 
                 <EditText
-                    android:id="@+id/dilution1"
+                    android:id="@+id/concentration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:hint="123.4"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:linksClickable="false"
-                    android:maxLength="2"
+                    android:maxLength="6"
                     android:maxLines="1"
                     android:nextFocusDown="@+id/numberOfPumps"
                     android:textColorHint="@color/hintColor"
