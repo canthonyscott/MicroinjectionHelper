@@ -22,50 +22,70 @@
         tools:context=".RNAInjection"
         tools:showIn="@layout/activity_rnainjection">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <GridLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:textColor="@color/white"
-            android:text="nanograms" />
+            android:background="@color/primary"
+            android:columnCount="2"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:rowCount="2">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="15dp"
-            android:inputType="none"
-            android:ems="10"
-            android:id="@+id/injectionQuantity"
-            android:text="0.0"
-            android:textAlignment="viewEnd"
-            android:gravity="end"
-            android:textColor="@color/white"
-            android:textSize="30sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:textColor="@color/white"
-            android:text="picograms" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="15dp"
-            android:inputType="none"
-            android:ems="10"
-            android:id="@+id/injectionQuantityPg"
-            android:text="0.0"
-            android:textAlignment="viewEnd"
-            android:gravity="end"
-            android:textColor="@color/white"
-            android:textSize="30sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="nanograms" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:inputType="none"
+                    android:id="@+id/injectionQuantity"
+                    android:text="0.0"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="picograms" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:inputType="none"
+                    android:id="@+id/injectionQuantityPg"
+                    android:text="0.0"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"/>
+
+
+
+            </LinearLayout>
+
+        </GridLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,10 +101,9 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:paddingBottom="15dp"
-            android:ems="10"
             android:id="@+id/injectionVolume"
             android:text="0.0"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:gravity="end"
             android:inputType="none"
             android:textColor="@color/white"
