@@ -4,8 +4,8 @@
     <string name="title_activity_moinjection">Oligo Injection</string>
     <string name="title_activity_rnainjection">RNA Injection</string>
     <string name="main_title">Microinjection Calculator</string>
-    <string name="measure_intro">Enter 1 ul capillary tube measurements</string>
-    <string name="pumps_to_mm">pumps was equal to</string>
+    <string name="measure_intro">Capillary measurements</string>
+    <string name="pumps_to_mm">Num of milimeters</string>
     <string name="MO_intro">Select Oligo and enter dilution</string>
     <string name="title_activity_add_morpholino">Add Morpholino</string>
     <string name="title_activity_remove_mo">Saved Oligos</string>

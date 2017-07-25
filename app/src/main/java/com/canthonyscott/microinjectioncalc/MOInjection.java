@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +52,7 @@ public class MOInjection extends AppCompatActivity{
     private ArrayAdapter<Morpholino> adapter;
 
     // color used for the fab below
-    private final static String primaryColor = "#2962FF";
+    private final static String primaryColor = "#4CAF50";
 
     // some variables needed for broad scope
     private Context context;
@@ -80,12 +82,15 @@ public class MOInjection extends AppCompatActivity{
         final TextView injectionVolumeResult = (TextView) findViewById(R.id.injectionVolume);
         final TextView injectionQuantityResult = (TextView) findViewById(R.id.injectionQuantity);
         final TextView molarityUI = (TextView) findViewById(R.id.stockMolarity);
+        final LinearLayout oligoLayout = (LinearLayout) findViewById(R.id.oligVolumeLayout);
+        final LinearLayout totalLayout = (LinearLayout) findViewById(R.id.totalVolumeLayout);
         context = getApplicationContext();
 
         // Get the stock oligo concentration from the user preferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         oligoConcentration = Float.parseFloat(sharedPreferences.getString("oligoMolarity", "1"));
-        molarityUI.setText(oligoConcentration.toString());
+        String concText = "Concentration: " + oligoConcentration.toString() + " mM";
+        molarityUI.setText(concText);
         // convert to mM concentration to M concentration
         oligoConcentration = oligoConcentration/1000;
 
@@ -135,12 +140,59 @@ public class MOInjection extends AppCompatActivity{
             }
         });
 
+        //Set onSelectListener to change layout colors
+        dilution1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(dilution1, dilution2, numberOfPumps, numberOfMillimeters);
+                int color = ContextCompat.getColor(context, R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+        dilution2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(dilution1, dilution2, numberOfPumps, numberOfMillimeters);
+                int color = ContextCompat.getColor(context, R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+        numberOfPumps.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(dilution1, dilution2, numberOfPumps, numberOfMillimeters);
+                int color = ContextCompat.getColor(context, R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+        numberOfMillimeters.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(dilution1, dilution2, numberOfPumps, numberOfMillimeters);
+                int color = ContextCompat.getColor(context, R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+
         //Set onClickListener for Calculate button
         Button calculate = (Button) findViewById(R.id.calculate);
         assert calculate != null;
+
+        calculate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // minimize the soft keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(numberOfPumps.getWindowToken(),0);
+
+            }
+        });
+
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // clear the colors of the layouts
+                resetLayoutColors(dilution1, dilution2, numberOfPumps, numberOfMillimeters);
                 // minimize the soft keyboard
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(numberOfPumps.getWindowToken(),0);
@@ -196,6 +248,14 @@ public class MOInjection extends AppCompatActivity{
         });
 
     }
+
+    private void resetLayoutColors(EditText oligoVol, EditText TotalVol, EditText pumps, EditText mm){
+        oligoVol.setBackgroundColor(Color.WHITE);
+        TotalVol.setBackgroundColor(Color.WHITE);
+        pumps.setBackgroundColor(Color.WHITE);
+        mm.setBackgroundColor(Color.WHITE);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

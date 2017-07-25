@@ -1,9 +1,13 @@
 package com.canthonyscott.microinjectioncalc;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,10 +43,52 @@ public class RNAInjection extends AppCompatActivity {
 //        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // set listeners for bg color changes
+        concentrationOfRNA.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(concentrationOfRNA, numberOfPumps, numberOfMm);
+                int color = ContextCompat.getColor(getApplicationContext(), R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+        numberOfPumps.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(concentrationOfRNA, numberOfPumps, numberOfMm);
+                int color = ContextCompat.getColor(getApplicationContext(), R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+        numberOfMm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(concentrationOfRNA, numberOfPumps, numberOfMm);
+                int color = ContextCompat.getColor(getApplicationContext(), R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+
         assert calculate != null;
+
+        calculate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // minimize keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(numberOfPumps.getWindowToken(),0);
+
+            }
+        });
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // minimize keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(numberOfPumps.getWindowToken(),0);
+
+                resetLayoutColors(concentrationOfRNA, numberOfPumps, numberOfMm);
+
                 Double injectionVolume;
                 Double concentration;
                 Double nanogramsInjected;
@@ -77,5 +123,12 @@ public class RNAInjection extends AppCompatActivity {
             }
         });
     }
+
+    private void resetLayoutColors(EditText concentration, EditText pumps, EditText mm){
+        concentration.setBackgroundColor(Color.WHITE);
+        pumps.setBackgroundColor(Color.WHITE);
+        mm.setBackgroundColor(Color.WHITE);
+    }
+
 
 }
