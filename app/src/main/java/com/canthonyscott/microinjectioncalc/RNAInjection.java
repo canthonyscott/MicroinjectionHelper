@@ -70,6 +70,16 @@ public class RNAInjection extends AppCompatActivity {
         });
 
         assert calculate != null;
+
+        calculate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // minimize keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(numberOfPumps.getWindowToken(),0);
+
+            }
+        });
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -146,6 +146,7 @@
 
                 <EditText
                     android:id="@+id/stockConcentration"
+                    android:nextFocusDown="@+id/desiredVolume"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -178,6 +179,7 @@
 
                 <EditText
                     android:id="@+id/desiredVolume"
+                    android:nextFocusDown="@+id/desiredConcentration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -211,6 +213,7 @@
 
                 <EditText
                     android:id="@+id/desiredConcentration"
+                    android:nextFocusDown="@+id/calculate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="300"

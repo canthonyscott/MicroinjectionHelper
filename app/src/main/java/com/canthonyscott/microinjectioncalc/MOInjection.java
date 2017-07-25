@@ -177,6 +177,17 @@ public class MOInjection extends AppCompatActivity{
         //Set onClickListener for Calculate button
         Button calculate = (Button) findViewById(R.id.calculate);
         assert calculate != null;
+
+        calculate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // minimize the soft keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(numberOfPumps.getWindowToken(),0);
+
+            }
+        });
+
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
