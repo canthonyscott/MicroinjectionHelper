@@ -1,7 +1,9 @@
 package com.canthonyscott.microinjectioncalc;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -51,7 +53,33 @@ public class MakeAnInjectionMix extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(calculate.getWindowToken(),0);
             }
         });
-        
+
+        stockConcentration.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(stockConcentration, desiredVolume, desiredConcentration);
+                int color = ContextCompat.getColor(getApplicationContext(), R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+        desiredVolume.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(stockConcentration, desiredVolume, desiredConcentration);
+                int color = ContextCompat.getColor(getApplicationContext(), R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+        desiredConcentration.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                resetLayoutColors(stockConcentration, desiredVolume, desiredConcentration);
+                int color = ContextCompat.getColor(getApplicationContext(), R.color.primary_light);
+                v.setBackgroundColor(color);
+            }
+        });
+
+
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +90,8 @@ public class MakeAnInjectionMix extends AppCompatActivity {
                 // minimize the soft keyboard
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(calculate.getWindowToken(),0);
+
+                resetLayoutColors(stockConcentration, desiredVolume, desiredConcentration);
 
 
                 // sanitize all inputs and calculate
@@ -124,5 +154,12 @@ public class MakeAnInjectionMix extends AppCompatActivity {
         resultWater.setText(CLEARED);
 
     }
+
+    private void resetLayoutColors(EditText stockConc, EditText desiredVol, EditText desiredConc){
+        stockConc.setBackgroundColor(Color.WHITE);
+        desiredVol.setBackgroundColor(Color.WHITE);
+        desiredConc.setBackgroundColor(Color.WHITE);
+    }
+
 
 }

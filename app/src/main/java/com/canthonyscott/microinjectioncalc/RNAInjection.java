@@ -87,6 +87,8 @@ public class RNAInjection extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(numberOfPumps.getWindowToken(),0);
 
+                resetLayoutColors(concentrationOfRNA, numberOfPumps, numberOfMm);
+
                 Double injectionVolume;
                 Double concentration;
                 Double nanogramsInjected;
