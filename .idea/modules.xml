@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MicroinjectionCalc.iml" filepath="$PROJECT_DIR$/MicroinjectionCalc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MicroinjectionHelper.iml" filepath="$PROJECT_DIR$/MicroinjectionHelper.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
